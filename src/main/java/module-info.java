@@ -10,5 +10,8 @@ open module francefx {
     requires jakarta.persistence;
 
     exports fr.univ_amu.iut.francefx;
-    exports fr.univ_amu.iut.francefx.model;
+    exports fr.univ_amu.iut.model;
+    exports fr.univ_amu.iut;
+    exports fr.univ_amu.iut.dao;
+    exports fr.univ_amu.iut.dao.factory;
 }

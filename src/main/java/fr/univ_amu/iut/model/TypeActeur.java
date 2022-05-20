@@ -1,4 +1,4 @@
-package fr.univ_amu.iut.francefx.model;
+package fr.univ_amu.iut.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

@@ -1,4 +1,4 @@
-package fr.univ_amu.iut.francefx.model;
+package fr.univ_amu.iut.model;
 
 public enum Niveau {
     Tous("Tous"),

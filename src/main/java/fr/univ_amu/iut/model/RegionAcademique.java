@@ -1,8 +1,6 @@
-package fr.univ_amu.iut.francefx.model;
+package fr.univ_amu.iut.model;
 
 import jakarta.persistence.*;
-
-import java.util.List;
 
 @Entity
 public class RegionAcademique {

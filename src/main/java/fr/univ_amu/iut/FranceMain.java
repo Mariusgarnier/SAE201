@@ -1,8 +1,8 @@
-package fr.univ_amu.iut.francefx;
+package fr.univ_amu.iut;
 
-import fr.univ_amu.iut.francefx.view.map.AcademiePath;
-import fr.univ_amu.iut.francefx.view.map.France;
-import fr.univ_amu.iut.francefx.view.map.FranceBuilder;
+import fr.univ_amu.iut.view.map.AcademiePath;
+import fr.univ_amu.iut.view.map.France;
+import fr.univ_amu.iut.view.map.FranceBuilder;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -11,8 +11,6 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-
-import java.util.Locale;
 
 public class FranceMain extends Application {
     France france;

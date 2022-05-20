@@ -1,4 +1,4 @@
-package fr.univ_amu.iut.francefx.view.map;
+package fr.univ_amu.iut.view.map;
 
 
 import javafx.beans.property.*;
