@@ -1,6 +1,8 @@
 package fr.univ_amu.iut;
 
+import fr.univ_amu.iut.model.Academie;
 import fr.univ_amu.iut.model.Acteur;
+import fr.univ_amu.iut.model.RegionAcademique;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -211,6 +213,10 @@ public class JPAMain extends Application {
     }
 
     public static void main(String[] args) {
+        em.getTransaction().begin();
+        Academie.toutes().forEach(em::persist);
+        em.getTransaction().commit();
+
         launch(args);
     }
 
