@@ -7,46 +7,46 @@ public class DAOFactoryJPA implements DAOFactory {
 
     @Override
     public DAOAcademie createDAOAcademie() {
-        return null;
+        return new DAOAcademieJPA();
     }
 
     @Override
     public DAOActeur createDAOActeur() {
-        return null;
+        return new DAOActeurJPA();
     }
 
     @Override
     public DAODiscipline createDAODiscipline() {
-        return null;
+        return new DAODisciplineJPA();
     }
 
     @Override
     public DAORegionAcademique createDAORegionAcademique() {
-        return null;
+        return new DAORegionAcademiqueJPA();
     }
 
     @Override
     public DAORessource createDAORessource() {
-        return null;
+        return new DAORessourceJPA();
     }
 
     @Override
     public DAOThematique createDAOThematique() {
-        return null;
+        return new DAOThematiqueJPA();
     }
 
     @Override
     public DAOTypeActeur createDAOTypeActeur() {
-        return null;
+        return new DAOTypeActeurJPA();
     }
 
     @Override
     public DAOTypeRessource createDAOTypeRessource() {
-        return null;
+        return new DAOTypeRessourceJPA();
     }
 
     @Override
     public DAOUsage createDAOUsage() {
-        return null;
+        return new DAOUsageJPA();
     }
 }
