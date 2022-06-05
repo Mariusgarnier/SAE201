@@ -1,8 +1,9 @@
 name: actions-template-sync
 
 on:
+  # cronjob trigger At 00:00 on day-of-month 1. https://crontab.guru/every-month
   schedule:
-  - cron:  "0 3 * * 1"
+    - cron:  "0 3 * * 1"
   # manual trigger
   workflow_dispatch:
 
