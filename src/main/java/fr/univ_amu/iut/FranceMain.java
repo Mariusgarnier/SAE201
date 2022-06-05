@@ -15,6 +15,10 @@ import javafx.stage.Stage;
 public class FranceMain extends Application {
     France france;
 
+    public static void main(String[] args) {
+        launch(args);
+    }
+
     @Override
     public void init() {
         france = FranceBuilder.create()
@@ -26,7 +30,7 @@ public class FranceMain extends Application {
                 //.selectedColor(Color.MAGENTA)
                 .mousePressHandler(evt -> {
                     AcademiePath academiePath = (AcademiePath) evt.getSource();
-                    System.out.println("On vient de cliquer sur l'"+academiePath.getAcademie().getNom());
+                    System.out.println("On vient de cliquer sur l'" + academiePath.getAcademie().getNom());
                 })
                 .selectionEnabled(true)
                 .build();
@@ -40,9 +44,5 @@ public class FranceMain extends Application {
         stage.setTitle("Carte des académie");
         stage.setScene(scene);
         stage.show();
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }

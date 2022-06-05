@@ -11,11 +11,11 @@ import java.util.*;
 
 public class AcademiePath extends SVGPath {
     private final static HashMap<Academie, AcademiePath> INSTANCES = new HashMap<>();
-
-    Academie academie;
+    private static final String LORES_PROPERTIES = "fr/univ_amu/iut/francefx/lores.properties";
     private final Tooltip tooltip;
+    Academie academie;
 
-    public AcademiePath(Academie academie){
+    public AcademiePath(Academie academie) {
         this(academie, null);
     }
 
@@ -25,11 +25,9 @@ public class AcademiePath extends SVGPath {
         Tooltip.install(this, tooltip);
         if (null == content) return;
         setContent(content);
-        getTransforms().add(Transform.affine(1.3333333,0,0,-1.3333333,-79.268904,937.80293));
-        INSTANCES.put(academie,this);
+        getTransforms().add(Transform.affine(1.3333333, 0, 0, - 1.3333333, - 79.268904, 937.80293));
+        INSTANCES.put(academie, this);
     }
-
-    private static final String LORES_PROPERTIES = "fr/univ_amu/iut/francefx/lores.properties";
 
     private static Properties readProperties(String fileName) {
         final ClassLoader LOADER = Thread.currentThread().getContextClassLoader();
