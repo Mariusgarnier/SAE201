@@ -32,4 +32,8 @@ public class Ressource {
     public URL getLienRessource() {
         return lienRessource;
     }
+
+    public int getId() {
+        return id;
+    }
 }
