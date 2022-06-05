@@ -40,4 +40,8 @@ public class Discipline {
     public String getNom() {
         return nom;
     }
+
+    public int getId() {
+        return id;
+    }
 }
