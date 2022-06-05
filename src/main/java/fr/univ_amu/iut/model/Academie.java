@@ -11,11 +11,13 @@ public class Academie {
     @Transient
     public static Academie Mayotte = new Academie("MY", "Académie de Mayotte", RegionAcademique.Mayotte);
     @Transient
-    public static Academie Besancon = new Academie("BE", "Académie de Besançon", RegionAcademique.BourgogneFrancheComte);
+    public static Academie Besancon =
+            new Academie("BE", "Académie de Besançon", RegionAcademique.BourgogneFrancheComte);
     @Transient
     public static Academie Bordeaux = new Academie("BO", "Académie de Bordeaux", RegionAcademique.NouvelleAquitaine);
     @Transient
-    public static Academie ClermontFerrand = new Academie("CL", "Académie de Clermont-Ferrand", RegionAcademique.AuvergneRhoneAlpes);
+    public static Academie ClermontFerrand =
+            new Academie("CL", "Académie de Clermont-Ferrand", RegionAcademique.AuvergneRhoneAlpes);
     @Transient
     public static Academie Dijon = new Academie("DI", "Académie de Dijon", RegionAcademique.BourgogneFrancheComte);
     @Transient
@@ -35,11 +37,13 @@ public class Academie {
     @Transient
     public static Academie Poitiers = new Academie("PO", "Académie de Poitiers", RegionAcademique.NouvelleAquitaine);
     @Transient
-    public static Academie AixMarseille = new Academie("AI", "Académie d'Aix-Marseille", RegionAcademique.ProvenceAlpesCoteDAzur);
+    public static Academie AixMarseille =
+            new Academie("AI", "Académie d'Aix-Marseille", RegionAcademique.ProvenceAlpesCoteDAzur);
     @Transient
     public static Academie Amiens = new Academie("AM", "Académie d'Amiens", RegionAcademique.HautsDeFrance);
     @Transient
-    public static Academie OrleansTours = new Academie("OR", "Académie d'Orléans-Tours", RegionAcademique.CentreValDeLoire);
+    public static Academie OrleansTours =
+            new Academie("OR", "Académie d'Orléans-Tours", RegionAcademique.CentreValDeLoire);
     @Transient
     public static Academie Corse = new Academie("CO", "Académie de Corse", RegionAcademique.Corse);
     @Transient

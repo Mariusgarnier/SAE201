@@ -1,13 +1,17 @@
 package fr.univ_amu.iut.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Transient;
 
 @Entity
 public class RegionAcademique {
     @Transient
     public static RegionAcademique AuvergneRhoneAlpes = new RegionAcademique("Région académique Auvergne-Rhône-Alpes");
     @Transient
-    public static RegionAcademique BourgogneFrancheComte = new RegionAcademique("Région académique Bourgogne-Franche-Comté");
+    public static RegionAcademique BourgogneFrancheComte =
+            new RegionAcademique("Région académique Bourgogne-Franche-Comté");
     @Transient
     public static RegionAcademique Bretagne = new RegionAcademique("Région académique Bretagne");
     @Transient
@@ -35,7 +39,8 @@ public class RegionAcademique {
     @Transient
     public static RegionAcademique PaysDeLaLoire = new RegionAcademique("Région académique Pays de la Loire");
     @Transient
-    public static RegionAcademique ProvenceAlpesCoteDAzur = new RegionAcademique("Région académique Provence-Alpes-Côte d'Azur");
+    public static RegionAcademique ProvenceAlpesCoteDAzur =
+            new RegionAcademique("Région académique Provence-Alpes-Côte d'Azur");
     @Transient
     public static RegionAcademique Reunion = new RegionAcademique("Région académique La Réunion");
     @Transient

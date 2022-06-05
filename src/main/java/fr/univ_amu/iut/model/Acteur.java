@@ -34,8 +34,16 @@ public class Acteur {
         return nom;
     }
 
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
     public String getPrenom() {
         return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
     }
 
     public Coordonees getCoordonees() {
@@ -44,14 +52,6 @@ public class Acteur {
 
     public String getTypeActeur() {
         return typeActeur.nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
     }
 
     public void setTypeActeur(String typeActeur) {

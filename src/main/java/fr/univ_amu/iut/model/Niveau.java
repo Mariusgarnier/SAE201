@@ -5,9 +5,11 @@ public enum Niveau {
     PremierDegre("Premier degré"),
     SecondDegre("Second degré");
     final String nom;
-    Niveau(String nom){
+
+    Niveau(String nom) {
         this.nom = nom;
     }
+
     public String getNom() {
         return nom;
     }
