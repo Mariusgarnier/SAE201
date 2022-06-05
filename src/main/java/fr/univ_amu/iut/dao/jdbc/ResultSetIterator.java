@@ -10,11 +10,11 @@ import java.util.Iterator;
 
 public class ResultSetIterator<T> implements Iterator<T> {
 
+    private final Connection connection;
+    private final RowMapper<T> rowMapper;
+    private final String sql;
     private ResultSet rs;
     private PreparedStatement ps;
-    private Connection connection;
-    private RowMapper<T> rowMapper;
-    private String sql;
 
     public ResultSetIterator(Connection connection, String sql, RowMapper<T> rowMapper) {
         assert connection != null;
@@ -42,7 +42,7 @@ public class ResultSetIterator<T> implements Iterator<T> {
         }
         try {
             boolean hasMore = rs.next();
-            if (!hasMore) {
+            if (! hasMore) {
                 close();
             }
             return hasMore;
