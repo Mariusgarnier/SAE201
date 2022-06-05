@@ -1,12 +1,9 @@
 package fr.univ_amu.iut;
 
-import fr.univ_amu.iut.model.Academie;
+import fr.univ_amu.iut.dao.DAOActeur;
+import fr.univ_amu.iut.dao.factory.DAOFactoryProducer;
+import fr.univ_amu.iut.dao.factory.DAOType;
 import fr.univ_amu.iut.model.Acteur;
-import fr.univ_amu.iut.model.RegionAcademique;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
-import jakarta.persistence.TypedQuery;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,8 +24,7 @@ import javafx.stage.Stage;
 import java.util.List;
 
 public class JPAMain extends Application {
-    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("gestionUsagesPU");
-    private static final EntityManager em = emf.createEntityManager();
+    private static final DAOActeur daoActeur = DAOFactoryProducer.getFactory(DAOType.JPA).createDAOActeur();
     private TableView<Acteur> table;
     private TableColumn<Acteur, String> nom;
     private TableColumn<Acteur, Integer> id;
@@ -40,6 +36,58 @@ public class JPAMain extends Application {
     private Button ajouter;
     private Button supprimer;
     private VBox racine;
+
+    private static TableColumn<Acteur, Integer> initialiserColonneId() {
+        TableColumn<Acteur, Integer> code = new TableColumn<>("Identifiant");
+        code.setCellValueFactory(new PropertyValueFactory<>("id"));
+        return code;
+    }
+
+    private static TableColumn<Acteur, String> initialiserColonneNom() {
+        TableColumn<Acteur, String> nom = new TableColumn<>("Nom");
+        nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        nom.setCellFactory(TextFieldTableCell.forTableColumn());
+        nom.setOnEditCommit(event -> {
+            int index = event.getTablePosition().getRow();
+            Acteur acteur = event.getTableView().getItems().get(index);
+            acteur.setNom(event.getNewValue());
+            daoActeur.update(acteur);
+        });
+        return nom;
+    }
+
+    private static TableColumn<Acteur, String> initialiserColonnePrenom() {
+        TableColumn<Acteur, String> prenom = new TableColumn<>("Prénom");
+        prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+        prenom.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        prenom.setOnEditCommit(event -> {
+            int index = event.getTablePosition().getRow();
+            Acteur acteur = event.getTableView().getItems().get(index);
+            acteur.setPrenom(event.getNewValue());
+            daoActeur.update(acteur);
+        });
+
+        return prenom;
+    }
+
+    private static TableColumn<Acteur, String> initialiserColonneVille() {
+        TableColumn<Acteur, String> ville = new TableColumn<>("Ville");
+        ville.setCellValueFactory(new PropertyValueFactory<>("ville"));
+        ville.setCellFactory(TextFieldTableCell.forTableColumn());
+        ville.setOnEditCommit(event -> {
+            int index = event.getTablePosition().getRow();
+            Acteur acteur = event.getTableView().getItems().get(index);
+            acteur.setVille(event.getNewValue());
+            daoActeur.update(acteur);
+        });
+        return ville;
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
     @Override
     public void start(Stage stage) {
         initialiserTable();
@@ -91,56 +139,6 @@ public class JPAMain extends Application {
         VBox.setVgrow(table, Priority.ALWAYS);
     }
 
-    private static TableColumn<Acteur, Integer> initialiserColonneId() {
-        TableColumn<Acteur, Integer> code = new TableColumn<>("Identifiant");
-        code.setCellValueFactory(new PropertyValueFactory<>("id"));
-        return code;
-    }
-
-    private static TableColumn<Acteur, String> initialiserColonneNom() {
-        TableColumn<Acteur, String> nom = new TableColumn<>("Nom");
-        nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        nom.setCellFactory(TextFieldTableCell.forTableColumn());
-        nom.setOnEditCommit(event -> {
-            int index = event.getTablePosition().getRow();
-            Acteur acteur = event.getTableView().getItems().get(index);
-            em.getTransaction().begin();
-            acteur.setNom(event.getNewValue());
-            em.getTransaction().commit();
-        });
-        return nom;
-    }
-
-    private static TableColumn<Acteur, String> initialiserColonnePrenom() {
-        TableColumn<Acteur, String> prenom = new TableColumn<>("Prénom");
-        prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
-        prenom.setCellFactory(TextFieldTableCell.forTableColumn());
-
-        prenom.setOnEditCommit(event -> {
-            int index = event.getTablePosition().getRow();
-            Acteur acteur = event.getTableView().getItems().get(index);
-            em.getTransaction().begin();
-            acteur.setPrenom(event.getNewValue());
-            em.getTransaction().commit();
-        });
-
-        return prenom;
-    }
-
-    private static TableColumn<Acteur, String> initialiserColonneVille() {
-        TableColumn<Acteur, String> ville = new TableColumn<>("Ville");
-        ville.setCellValueFactory(new PropertyValueFactory<>("ville"));
-        ville.setCellFactory(TextFieldTableCell.forTableColumn());
-        ville.setOnEditCommit(event -> {
-            int index = event.getTablePosition().getRow();
-            Acteur acteur = event.getTableView().getItems().get(index);
-            em.getTransaction().begin();
-            acteur.setVille(event.getNewValue());
-            em.getTransaction().commit();
-        });
-        return ville;
-    }
-
     private TableColumn<Acteur, String> initialiserColonneTypeActeur() {
         TableColumn<Acteur, String> typeActeur = new TableColumn<>("Type d'acteur");
         typeActeur.setCellValueFactory(new PropertyValueFactory<>("typeActeur"));
@@ -148,9 +146,8 @@ public class JPAMain extends Application {
         typeActeur.setOnEditCommit(event -> {
             int index = event.getTablePosition().getRow();
             Acteur acteur = event.getTableView().getItems().get(index);
-            em.getTransaction().begin();
             acteur.setTypeActeur(event.getNewValue());
-            em.getTransaction().commit();
+            daoActeur.update(acteur);
         });
         return typeActeur;
     }
@@ -173,15 +170,12 @@ public class JPAMain extends Application {
     }
 
     private ObservableList<Acteur> listerActeurs() {
-        TypedQuery<Acteur> query = em.createNamedQuery("Acteur.findAll", Acteur.class);
-        return FXCollections.observableList(query.getResultList());
+        return FXCollections.observableList(daoActeur.findAll());
     }
 
     private void ajouterActeur(ActionEvent event) {
         Acteur acteur = new Acteur();
-        em.getTransaction().begin();
-        em.persist(acteur);
-        em.getTransaction().commit();
+        daoActeur.insert(acteur);
         data.add(acteur);
 
         int rowIndex = data.size() - 1;
@@ -194,9 +188,7 @@ public class JPAMain extends Application {
     private void supprimerActeur(ActionEvent event) {
         if (table.getItems().size() == 0) return;
 
-        em.getTransaction().begin();
-        em.remove(table.getSelectionModel().getSelectedItem());
-        em.getTransaction().commit();
+        daoActeur.delete(table.getSelectionModel().getSelectedItem());
 
         int selectedRowIndex = table.getSelectionModel().getSelectedIndex();
 
@@ -210,14 +202,6 @@ public class JPAMain extends Application {
         table.scrollTo(selectedRowIndex);
         table.getSelectionModel().select(selectedRowIndex);
         table.getFocusModel().focus(selectedRowIndex);
-    }
-
-    public static void main(String[] args) {
-        em.getTransaction().begin();
-        Academie.toutes().forEach(em::persist);
-        em.getTransaction().commit();
-
-        launch(args);
     }
 
 }
