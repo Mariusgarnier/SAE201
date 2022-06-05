@@ -26,4 +26,8 @@ public class TypeActeur {
     public void setNom(String nom) {
         this.nom = nom;
     }
+
+    public int getId() {
+        return id;
+    }
 }

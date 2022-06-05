@@ -38,6 +38,10 @@ public class Usage {
     public Usage() {
     }
 
+    public int getId() {
+        return id;
+    }
+
     public String getNom() {
         return nom;
     }
@@ -82,10 +86,11 @@ public class Usage {
         return academies;
     }
 
-    public void addAcademies(Academie ... academies) {
+    public void addAcademies(Academie... academies) {
         this.academies.addAll(List.of(academies));
     }
-    public void addAcademies(Collection<? extends Academie> academies){
+
+    public void addAcademies(Collection<? extends Academie> academies) {
         this.academies.addAll(academies);
     }
 

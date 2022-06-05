@@ -15,9 +15,14 @@ public class TypeRessource {
         this.nom = nom;
     }
 
-    public TypeRessource() {}
+    public TypeRessource() {
+    }
 
     public String getNom() {
         return nom;
+    }
+
+    public int getId() {
+        return id;
     }
 }

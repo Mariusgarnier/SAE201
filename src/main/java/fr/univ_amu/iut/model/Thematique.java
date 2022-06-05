@@ -8,7 +8,7 @@ import jakarta.persistence.Transient;
 @Entity
 public class Thematique {
     @Transient
-    public static Thematique ClasseInversee= new Thematique("Classe inversée");
+    public static Thematique ClasseInversee = new Thematique("Classe inversée");
     @Transient
     public static Thematique CreationNumerique = new Thematique("Création numérique");
     @Transient
@@ -57,14 +57,18 @@ public class Thematique {
     int id;
     String nom;
 
-    public String getNom() {
-        return nom;
-    }
-
     public Thematique(String nom) {
         this.nom = nom;
     }
 
     public Thematique() {
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public int getId() {
+        return id;
     }
 }
