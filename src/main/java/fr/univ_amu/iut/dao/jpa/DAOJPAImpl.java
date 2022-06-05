@@ -6,7 +6,7 @@ import jakarta.persistence.TypedQuery;
 import java.util.List;
 
 class DAOJPAImpl {
-    final EntityManager entityManager;
+    private final EntityManager entityManager;
 
     DAOJPAImpl(EntityManager entityManager) {
         this.entityManager = entityManager;

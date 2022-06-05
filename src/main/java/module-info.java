@@ -1,4 +1,4 @@
-open module francefx {
+open module sae201 {
     requires transitive javafx.base;
     requires transitive javafx.controls;
     requires transitive javafx.graphics;
