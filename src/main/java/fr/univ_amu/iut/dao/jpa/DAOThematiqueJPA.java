@@ -2,32 +2,48 @@ package fr.univ_amu.iut.dao.jpa;
 
 import fr.univ_amu.iut.dao.DAOThematique;
 import fr.univ_amu.iut.model.Thematique;
+import jakarta.persistence.EntityManager;
 
 import java.util.List;
 
-public class DAOThematiqueJPA implements DAOThematique {
+public class DAOThematiqueJPA extends DAOJPAImpl implements DAOThematique {
+    DAOThematiqueJPA(EntityManager entityManager) {
+        super(entityManager);
+    }
+
     @Override
     public boolean delete(Thematique obj) {
-        return false;
+        try {
+            super.deleteImpl(obj);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override
     public List<Thematique> findAll() {
-        return null;
+        return super.findImpl(Thematique.class, "Thematique.findAll");
     }
 
     @Override
-    public Thematique getById(int id) {
-        return null;
+    public Thematique getById(Integer id) {
+        return super.getByIdImpl(Thematique.class, id);
     }
 
     @Override
     public Thematique insert(Thematique obj) {
-        return null;
+        super.insertImpl(obj);
+        return getById(obj.getId());
     }
 
     @Override
     public boolean update(Thematique obj) {
-        return false;
+        try {
+            super.updateImpl(obj);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

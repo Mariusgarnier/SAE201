@@ -32,7 +32,7 @@ public class DataAccessException extends RuntimeException {
             errorCode = ((SQLException) cause).getErrorCode();
             state = ((SQLException) cause).getSQLState();
         } else {
-            errorCode = -1;
+            errorCode = - 1;
             state = cause.getMessage();
         }
     }

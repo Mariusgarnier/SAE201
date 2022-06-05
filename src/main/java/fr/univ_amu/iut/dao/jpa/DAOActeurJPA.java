@@ -2,32 +2,48 @@ package fr.univ_amu.iut.dao.jpa;
 
 import fr.univ_amu.iut.dao.DAOActeur;
 import fr.univ_amu.iut.model.Acteur;
+import jakarta.persistence.EntityManager;
 
 import java.util.List;
 
-public class DAOActeurJPA implements DAOActeur {
+public class DAOActeurJPA extends DAOJPAImpl implements DAOActeur {
+    DAOActeurJPA(EntityManager entityManager) {
+        super(entityManager);
+    }
+
     @Override
     public boolean delete(Acteur obj) {
-        return false;
+        try {
+            super.deleteImpl(obj);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override
     public List<Acteur> findAll() {
-        return null;
+        return super.findImpl(Acteur.class, "Acteur.findAll");
     }
 
     @Override
-    public Acteur getById(int id) {
-        return null;
+    public Acteur getById(Integer id) {
+        return super.getByIdImpl(Acteur.class, id);
     }
 
     @Override
     public Acteur insert(Acteur obj) {
-        return null;
+        super.insertImpl(obj);
+        return getById(obj.getId());
     }
 
     @Override
     public boolean update(Acteur obj) {
-        return false;
+        try {
+            super.updateImpl(obj);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

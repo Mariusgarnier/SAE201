@@ -1,32 +1,49 @@
 package fr.univ_amu.iut.dao.jpa;
 
 import fr.univ_amu.iut.dao.DAODiscipline;
+import fr.univ_amu.iut.model.Discipline;
+import jakarta.persistence.EntityManager;
 
 import java.util.List;
 
-public class DAODisciplineJPA implements DAODiscipline {
-    @Override
-    public boolean delete(DAODiscipline obj) {
-        return false;
+public class DAODisciplineJPA extends DAOJPAImpl implements DAODiscipline {
+    DAODisciplineJPA(EntityManager entityManager) {
+        super(entityManager);
     }
 
     @Override
-    public List<DAODiscipline> findAll() {
-        return null;
+    public boolean delete(Discipline obj) {
+        try {
+            super.deleteImpl(obj);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override
-    public DAODiscipline getById(int id) {
-        return null;
+    public List<Discipline> findAll() {
+        return super.findImpl(Discipline.class, "Discipline.findAll");
     }
 
     @Override
-    public DAODiscipline insert(DAODiscipline obj) {
-        return null;
+    public Discipline getById(Integer id) {
+        return super.getByIdImpl(Discipline.class, id);
     }
 
     @Override
-    public boolean update(DAODiscipline obj) {
-        return false;
+    public Discipline insert(Discipline obj) {
+        super.insertImpl(obj);
+        return getById(obj.getId());
+    }
+
+    @Override
+    public boolean update(Discipline obj) {
+        try {
+            super.updateImpl(obj);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

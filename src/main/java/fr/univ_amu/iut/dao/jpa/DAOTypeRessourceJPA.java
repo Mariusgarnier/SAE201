@@ -2,32 +2,48 @@ package fr.univ_amu.iut.dao.jpa;
 
 import fr.univ_amu.iut.dao.DAOTypeRessource;
 import fr.univ_amu.iut.model.TypeRessource;
+import jakarta.persistence.EntityManager;
 
 import java.util.List;
 
-public class DAOTypeRessourceJPA implements DAOTypeRessource {
+public class DAOTypeRessourceJPA extends DAOJPAImpl implements DAOTypeRessource {
+    DAOTypeRessourceJPA(EntityManager entityManager) {
+        super(entityManager);
+    }
+
     @Override
     public boolean delete(TypeRessource obj) {
-        return false;
+        try {
+            super.deleteImpl(obj);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override
     public List<TypeRessource> findAll() {
-        return null;
+        return super.findImpl(TypeRessource.class, "TypeRessource.findAll");
     }
 
     @Override
-    public TypeRessource getById(int id) {
-        return null;
+    public TypeRessource getById(Integer id) {
+        return super.getByIdImpl(TypeRessource.class, id);
     }
 
     @Override
     public TypeRessource insert(TypeRessource obj) {
-        return null;
+        super.insertImpl(obj);
+        return getById(obj.getId());
     }
 
     @Override
     public boolean update(TypeRessource obj) {
-        return false;
+        try {
+            super.updateImpl(obj);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

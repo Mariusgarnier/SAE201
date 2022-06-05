@@ -2,32 +2,48 @@ package fr.univ_amu.iut.dao.jpa;
 
 import fr.univ_amu.iut.dao.DAORegionAcademique;
 import fr.univ_amu.iut.model.RegionAcademique;
+import jakarta.persistence.EntityManager;
 
 import java.util.List;
 
-public class DAORegionAcademiqueJPA implements DAORegionAcademique {
+public class DAORegionAcademiqueJPA extends DAOJPAImpl implements DAORegionAcademique {
+    DAORegionAcademiqueJPA(EntityManager entityManager) {
+        super(entityManager);
+    }
+
     @Override
     public boolean delete(RegionAcademique obj) {
-        return false;
+        try {
+            super.deleteImpl(obj);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override
     public List<RegionAcademique> findAll() {
-        return null;
+        return super.findImpl(RegionAcademique.class, "RegionAcademique.findAll");
     }
 
     @Override
-    public RegionAcademique getById(int id) {
-        return null;
+    public RegionAcademique getById(Integer id) {
+        return super.getByIdImpl(RegionAcademique.class, id);
     }
 
     @Override
     public RegionAcademique insert(RegionAcademique obj) {
-        return null;
+        super.insertImpl(obj);
+        return getById(obj.getId());
     }
 
     @Override
     public boolean update(RegionAcademique obj) {
-        return false;
+        try {
+            super.updateImpl(obj);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
