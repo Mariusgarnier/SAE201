@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @NamedQueries({
         @NamedQuery(name = "Acteur.findAll", query = "SELECT p FROM Acteur p"),
-        @NamedQuery(name = "Acteur.findById", query = "SELECT p FROM Acteur p WHERE p.id = :id"),
+        @NamedQuery(name = "Acteur.findByNom", query = "SELECT p FROM Acteur p WHERE p.nom = :nom"),
 })
 @Entity
 public class Acteur {

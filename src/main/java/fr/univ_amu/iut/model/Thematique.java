@@ -1,10 +1,10 @@
 package fr.univ_amu.iut.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Transient;
+import jakarta.persistence.*;
 
+@NamedQueries({
+        @NamedQuery(name = "Thematique.findAll", query = "SELECT p FROM Thematique p"),
+})
 @Entity
 public class Thematique {
     @Transient

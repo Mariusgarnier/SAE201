@@ -46,4 +46,9 @@ public class DAOActeurJPA extends DAOJPAImpl implements DAOActeur {
             return false;
         }
     }
+
+    @Override
+    public List<Acteur> findByNom(String nom) {
+        return super.findByImpl(Acteur.class, "Acteur.findByNom", "nom", nom);
+    }
 }

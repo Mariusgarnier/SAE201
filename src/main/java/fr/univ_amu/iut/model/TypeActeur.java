@@ -1,9 +1,10 @@
 package fr.univ_amu.iut.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+@NamedQueries({
+        @NamedQuery(name = "TypeActeur.findAll", query = "SELECT p FROM TypeActeur p"),
+})
 @Entity
 public class TypeActeur {
     @Id

@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+@NamedQueries({
+        @NamedQuery(name = "Usage.findAll", query = "SELECT p FROM Usage p"),
+})
 @Entity
 public class Usage {
     @Id

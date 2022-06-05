@@ -1,9 +1,10 @@
 package fr.univ_amu.iut.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+@NamedQueries({
+        @NamedQuery(name = "TypeRessource.findAll", query = "SELECT p FROM TypeRessource p"),
+})
 @Entity
 public class TypeRessource {
     @Id
